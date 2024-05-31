@@ -1,80 +1,80 @@
 import pyttsx3 
-<B>
+<Br>
 import speech_recognition as sr
-<B>
+<Br>
 import datetime
-<B>
+<Br>
 # Initialize the speech engine
-<B>
+<Br>
 engine = pyttsx3.init()
-<B>
+<Br>
 # Set the speech rate
-<B>
+<Br>
 engine.setProperty('rate', 150)
-<B>
+<Br>
 # Set the speech volume
-<B>
+<Br>
 engine.setProperty('volume', 1.0)
 
-<B>
+<Br>
 # Define a function to speak text
-<B>
+<Br>
 def speak(text):
-   <B>
+   <Br>
    engine.say(text)
-    <B>
+    <Br>
     engine.runAndWait()
 
-<B>
+<Br>
 # Define a function to get user input via speech recognition
-<B>
+<Br>
 def get_user_input():
-   <B>
+   <Br>
    r = sr.Recognizer()
-    <B>
+    <Br>
     with sr.Microphone() as source:
-       <B>
+       <Br>
        print("Listening...")
-        <B>
+        <Br>
         audio = r.listen(source)
-        <B>
+        <Br>
         try:
-           <B>
+           <Br>
            text = r.recognize_google(audio)
-            <B>
+            <Br>
             return text
-        <B>
+        <Br>
         except sr.UnknownValueError:
-           <B>
+           <Br>
            speak("Sorry, I didn't understand that. Please try again.")
-            <B>
+            <Br>
             return get_user_input()
 
-<B>
+<Br>
 # Define a function to handle user queries
-<B>
+<Br>
 def handle_query(text):
-   <B>
+   <Br>
    if "what time" in text:
-      <B>
+      <Br>
       speak("The current time is " + datetime.datetime.now().strftime("%H:%M:%S"))
-    <B>
+    <Br>
     elif "goodbye" in text:
-       <B>
+       <Br>
        speak("Goodbye! Have a great day!")
-        <B>
+        <Br>
         exit()
-    <B>
+    <Br>
     else:
-       <B>
+       <Br>
        speak("Sorry, I didn't understand that. Please try again.")
 
-<B>
+<Br>
 # Main loop
-<B>
+<Br>
 while True:
-   <B> 
+   <Br> 
    user_input = get_user_input()
-    <B
+    <Br>
     
     handle_query(user_input)
